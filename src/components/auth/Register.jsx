@@ -9,8 +9,11 @@ const Register = () => {
     email: '',
     isAdmin: "false",
   })
-  const [validate, setV] = useState({
-     email: false,
+
+  const [formErrors, setFormErrors] = useState({
+    username: '',
+    password: '',
+    email: '',
   })
 
   const [admin, setAdmin] = useState("false")
@@ -32,18 +35,36 @@ const Register = () => {
   }
 
   const handleRegister =()=> {
-    const {username, email, password} = user
-    setUser(p=>({...p, isAdmin: admin}))
-    if(username!="" && email!="" && password!=""){
-      if(username.includes(' ') || email.includes(' ') || password.includes(' ')) return toast.error("spaces are invalid")
-      else{
-        if(!(email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/))){ 
-          setV(p=>({...p, email: true}))
-          return toast.error("invalid email address")
-        }
-        else setV(p=>({...p, email: false}))
+    let valid = true
+    const errors = {}
 
-        if(validate.email == false){
+    if(!user.username.trim()){
+      errors.username = "Username is required"
+      valid = false
+    }
+
+    if(!user.password.trim()){
+      errors.password = 'Password is required'
+      valid = false
+    }else if((user.password).includes(' ')) {
+      errors.password = 'There should be no space inside the password.'
+      valid = false
+    }
+
+    if(!user.email.trim()){
+      errors.email = 'Email is required'
+      valid = false
+    }else if(!/\S+@\S+\.\S+/.test(user.email)) {
+      errors.email = 'Please enter a valid email address'
+      valid = false
+    }
+
+    setFormErrors(errors)
+
+    if(valid){
+      const {username, email, password} = user
+      setUser(p=>({...p, isAdmin: admin}))
+      if(username!="" && email!="" && password!=""){
             const registerPromise = register(user)
             
             toast.promise(registerPromise,{
@@ -55,11 +76,7 @@ const Register = () => {
             registerPromise.then(()=>{
               navigate('/login')
             })
-        }
       }
-    }
-    else{
-      toast.error("Please fill all details")
     }
   };
 
@@ -82,6 +99,9 @@ const Register = () => {
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
+              {
+                formErrors.username && <p className='text-red-500'>{formErrors.username}</p>
+              }
               <label htmlFor="username" className="sr-only">Username</label>
               <input
                 id="username" name="username" type="text" autoComplete="username" required placeholder="Username" value={user.username}
@@ -90,6 +110,9 @@ const Register = () => {
               />
             </div>
             <div>
+              {
+                formErrors.password && <p className='text-red-500'>{formErrors.password}</p>
+              }
               <label htmlFor="password" className="sr-only">Password</label>
               <input
                 id="password" name="password" type="password" autoComplete="new-password" required placeholder="Password" value={user.password}
@@ -98,6 +121,9 @@ const Register = () => {
               />
             </div>
             <div>
+              {
+                formErrors.email && <p className='text-red-500'>{formErrors.email}</p>
+              }
               <label htmlFor="email" className="sr-only">Email address</label>
               <input
                 id="email" name="email" type="email" autoComplete="email" required placeholder="Email address" value={user.email}
