@@ -43,7 +43,7 @@ const PatientBooks = () => {
 
   const [data, setData] = useState([])
   const fetFun=async()=>{
-    const myData = await axios.get(`http://localhost:8080/api/getPatients/${id}`)
+    const myData = await axios.get(`https://de-2-one.vercel.app/api/getPatients/${id}`)
     setData(myData.data)
     console.log(myData)
   }
