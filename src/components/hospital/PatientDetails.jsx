@@ -16,10 +16,10 @@ const PatientTable = ({ patients }) => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {patients.map((patient, index) => (
+          {patients?.map((patient, index) => (
             <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-              <td className={styl2}>{patient.hospitalName}</td>
-              <td className={styl2}>{patient.service}</td>
+              <td className={styl2}>{patient?.hospitalName}</td>
+              <td className={styl2}>{patient?.service}</td>
             </tr>
           ))}
         </tbody>

@@ -15,19 +15,19 @@ function HospitalPage() {
         <div className='r w-[75%] mx-auto bg-white xs:w-[100%] shadow-xl'>
             <div className='p-5 xs:p-3'>
                 <div className='b'>
-                    <h1>{hospital.title}</h1>
+                    <h1>{hospital?.title}</h1>
                     <p>                        {
                             hospital.ratings >= 4 ? 
-                            <span className='text-green-600'>{hospital.ratings}</span> : 
-                            <span className='text-yellow-500'>{hospital.ratings}</span>
+                            <span className='text-green-600'>{hospital?.ratings}</span> : 
+                            <span className='text-yellow-500'>{hospital?.ratings}</span>
                         }
                         <span className='text-yellow-500 pr-2'>
                             <i className="fa-solid fa-star"></i>
                         </span>
                         Ratings
                     </p>
-                    <h2><i className="fa-solid fa-location-dot"></i> {hospital.address}</h2>
-                    <a href={`https://www.google.com/maps/dir/${latitude},${longitude}/${hospital.ad}`} target='_blank'>
+                    <h2><i className="fa-solid fa-location-dot"></i> {hospital?.address}</h2>
+                    <a href={`https://www.google.com/maps/dir/${latitude},${longitude}/${hospital?.ad}`} target='_blank'>
                         <i className="fa-solid fa-diamond-turn-right mr-1"></i>
                         <button className='rounded-lg px-2 py-1 bg-blue-500 text-white'>
                             Get Directions
