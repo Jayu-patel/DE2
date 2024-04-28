@@ -107,6 +107,11 @@ const Book = () => {
       registerPromise.then(()=>{
         dispatch(fetchDataA())
       })
+      .then(()=>{
+        setTimeout(()=>{
+          navigate('/')
+        },1000)
+      })
 
       const mailPromise = generateMail({
         username: fullName,

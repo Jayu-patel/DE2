@@ -14,7 +14,7 @@ function Navbar() {
 
     const [data, setData] = useState([])
     const fetFun=async()=>{
-        const myData = await axios.get(`https://de-server.vercel.app/api/findUser/${name}`)
+        const myData = await axios.get(`http://localhost:8080/api/findUser/${name}`)
         setData(myData.data)
     }
     useEffect(()=>{
@@ -34,28 +34,28 @@ function Navbar() {
     return (
     <div className={'w-[100vw] h-auto bg-blue-600 text-white flex justify-between fixed top-[0] z-50 shadow-md'}>
         <div className='ml-8 xss:ml-2 xs:ml-1'>
-            <h1 className='text-[2.5rem] font-semibold cursor-pointer' onClick={()=>{navigate('/')}}>VBSS</h1>
+            <h1 className='text-[2.5rem] font-semibold cursor-pointer' onClick={()=>{navigate('/'); open()}}>VBSS</h1>
         </div>
         {
         user == "" ?
         <div className={'list-none flex justify-around my-auto box text-gray-200 transition-all '+menu}>
             <li>
-                <button onClick={()=>{navigate('/login')}}>
+                <button onClick={()=>{navigate('/login'); open()}}>
                     Already have an account?
                 </button>
             </li>
             <li>
-                <button onClick={()=>{navigate('/register')}}>Sign up</button>
+                <button onClick={()=>{navigate('/register'); open()}}>Sign up</button>
             </li>
         </div> :
         <div className={'list-none flex justify-around my-auto box text-gray-200 transition-all w-[250px] xs:w-full '+menu}>
             <li>
                 {
-                    <button onClick={()=>{navigate('profile/user')}}>Profile</button> 
+                    <button onClick={()=>{navigate('profile/user'); open()}}>Profile</button> 
                 }
             </li>
             <li>
-                <button className='' onClick={()=>{dispatch(setUsername("")); navigate("/")}}>Log Out</button>
+                <button className='' onClick={()=>{dispatch(setUsername("")); navigate("/"); open()}}>Log Out</button>
             </li>
         </div>
         }
