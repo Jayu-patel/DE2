@@ -39,7 +39,7 @@ function Pagination({postPerPage, totalPage, paginate}) {
     return (
     <div className={'borderr list-none py-2 mt-2 text-blue-400 '+load}>
         {
-            pageNums.map(num =>{
+            pageNums?.map(num =>{
                 return (
                     <li key={num} className={`cursor-pointer px-4 py-2 border-[1px] border-blue-400 hover:bg-slate-200 bg-white ${num}`}
 
