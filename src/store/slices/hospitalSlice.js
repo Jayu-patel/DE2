@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const fetchDataA = createAsyncThunk('fetchDataA', async ()=> {
-    const res = await axios.get('https://de-2-one.vercel.app/api/getAllHospitals').then(res => res.data)
+    const res = await axios.get('https://de-server.vercel.app/api/getAllHospitals').then(res => res.data)
     return res
 })
 
