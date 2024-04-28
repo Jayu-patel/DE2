@@ -63,7 +63,9 @@ function SearchPosts({posts}) {
         </div> */}
         {
             posts?.map((e)=>{
-                return <div key={e?.id} className='py-1'>
+                return( 
+                  e?.bed < 0 ? <></> :
+                  <div key={e?.id} className='py-1'>
                           <div className='flex justify-between w-[85%] xs:w-full mx-auto p-3 border-[1px] border-black' style={{backgroundImage : "url('bg.jpg')"}}>
                               <div className='ml-10 xs:ml-0'>
                                 <Link to={`/hospital/${e?.id}`} >
@@ -87,6 +89,7 @@ function SearchPosts({posts}) {
                               </div>
                           </div>
                       </div>
+                 )
             })
         }
     </div>
