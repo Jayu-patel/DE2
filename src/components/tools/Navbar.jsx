@@ -34,7 +34,7 @@ function Navbar() {
     return (
     <div className={'w-[100vw] h-auto bg-blue-600 text-white flex justify-between fixed top-[0] z-50 shadow-md'}>
         <div className='ml-8 xss:ml-2 xs:ml-1'>
-            <h1 className='text-[2.5rem] font-semibold cursor-pointer' onClick={()=>{navigate('/'); open()}}>VBSS</h1>
+            <h1 className='text-[2.5rem] font-semibold cursor-pointer' onClick={()=>{navigate('/')}}>VBSS</h1>
         </div>
         {
         user == "" ?
