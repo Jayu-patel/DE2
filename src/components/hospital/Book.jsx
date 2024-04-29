@@ -44,7 +44,7 @@ const Book = () => {
       errors.age = 'Age is required'
       valid = false
     } 
-    else if(isNaN(formData.age) || parseInt(formData.age) <= 0){
+    else if(isNaN(formData.age) || (parseInt(formData.age) <= 0) || parseInt(formData.age) > 120){
       errors.age = 'Please enter a valid age'
       valid = false
     }
