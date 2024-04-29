@@ -14,7 +14,7 @@ function Navbar() {
 
     const [data, setData] = useState([])
     const fetFun=async()=>{
-        const myData = await axios.get(`http://localhost:8080/api/findUser/${name}`)
+        const myData = await axios.get(`https://de-server.vercel.app/api/findUser/${name}`)
         setData(myData.data)
     }
     useEffect(()=>{
